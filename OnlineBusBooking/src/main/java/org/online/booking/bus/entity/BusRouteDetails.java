@@ -20,18 +20,8 @@ public class BusRouteDetails {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "STATE_ID")
-	private State state;
-
-	@ManyToOne
-	@JoinColumn(name = "CITY_ID")
-	private City city;
-
-	@Column(name = "SOURCE")
-	private boolean source;
-
-	@Column(name = "DESTINATION")
-	private boolean destination;
+	@JoinColumn(name = "ROUTE_ID")
+	private Routs route;	
 
 	public Long getId() {
 		return id;
@@ -41,36 +31,13 @@ public class BusRouteDetails {
 		this.id = id;
 	}
 
-	public City getCity() {
-		return city;
+	public Routs getRoute() {
+		return route;
 	}
 
-	public void setCity(City city) {
-		this.city = city;
+	public void setRoute(Routs route) {
+		this.route = route;
 	}
 
-	public State getState() {
-		return state;
-	}
-
-	public void setState(State state) {
-		this.state = state;
-	}
-
-	public boolean isSource() {
-		return source;
-	}
-
-	public void setSource(boolean source) {
-		this.source = source;
-	}
-
-	public boolean isDestination() {
-		return destination;
-	}
-
-	public void setDestination(boolean destination) {
-		this.destination = destination;
-	}
-
+	
 }
