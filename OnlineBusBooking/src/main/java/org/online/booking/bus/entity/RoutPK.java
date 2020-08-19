@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class RoutPK implements Serializable{
+public class RoutPK implements Serializable {
 
 	/**
 	 * 
@@ -15,7 +15,7 @@ public class RoutPK implements Serializable{
 
 	@Column(name = "FROM_CITY_ID")
 	private Long fromCityId;
-	
+
 	@Column(name = "TO_CITY_ID")
 	private Long toCityId;
 
@@ -34,7 +34,11 @@ public class RoutPK implements Serializable{
 	public void setToCityId(Long toCityId) {
 		this.toCityId = toCityId;
 	}
-	
-	
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		RoutPK pk = (RoutPK) obj;
+		return pk.getFromCityId().equals(this.getFromCityId()) && pk.getToCityId().equals(this.getToCityId());
+	}
+
 }

@@ -1,14 +1,10 @@
 package org.online.booking.bus.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -23,11 +19,8 @@ public class Country {
 	private Long id;
 
 	@Column(name = "COUNTRY_NAME")
-	private String countyName;
-
-	@OneToMany
-	@JoinColumn(name = "STATE_ID")
-	private List<State> states;
+	private String countryName;
+	
 
 	public Long getId() {
 		return id;
@@ -37,22 +30,15 @@ public class Country {
 		this.id = id;
 	}
 
-	public String getCountyName() {
-		return countyName;
-	}
-
-	public void setCountyName(String countyName) {
-		this.countyName = countyName;
-	}
-
-	public List<State> getStates() {
-		return states;
-	}
-
-	public void setStates(List<State> states) {
-		this.states = states;
-	}
 	
-	
+
+	public String getCountryName() {
+		return countryName;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
+
 
 }

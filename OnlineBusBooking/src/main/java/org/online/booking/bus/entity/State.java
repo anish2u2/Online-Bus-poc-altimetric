@@ -8,26 +8,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name = "STATE")
 public class State {
-	
+
 	@Id
-	@SequenceGenerator(allocationSize = 1,initialValue = 1,name = "STATE_INCREAMENTOR")
+	@SequenceGenerator(allocationSize = 1, initialValue = 1, name = "STATE_INCREAMENTOR")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STATE_INCREAMENTOR")
 	@Column(name = "STATE_ID")
 	private Long id;
-	
+
 	@Column(name = "STATE_NAME")
 	private String name;
-	
-	@OneToMany
-	@JoinColumn( name = "CITY_ID")
-	private List<City> cities;
+
+	@ManyToOne
+	@Cascade(CascadeType.ALL)
+	@JoinColumn(name = "COUNTRY_ID")
+	private Country country;
 
 	public Long getId() {
 		return id;
@@ -45,14 +50,12 @@ public class State {
 		this.name = name;
 	}
 
-	public List<City> getCities() {
-		return cities;
+	public Country getCountry() {
+		return country;
 	}
 
-	public void setCities(List<City> cities) {
-		this.cities = cities;
+	public void setCountry(Country country) {
+		this.country = country;
 	}
-	
-	
-	
+
 }

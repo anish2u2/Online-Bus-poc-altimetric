@@ -7,8 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class BookingDetailsPk implements Serializable{
-	
+public class BookingDetailsPk implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -16,16 +16,16 @@ public class BookingDetailsPk implements Serializable{
 
 	@Column(name = "BUS_ID")
 	private Long id;
-	
+
 	@Column(name = "TRAVELLING_DATE")
 	private Date travellingDate;
-	
+
 	@Column(name = "SEAT_NUMBER")
-	private int seatNumber;
-	
+	private Integer seatNumber;
+
 	@Column(name = "SOURCE_CITY_ID")
 	private Long sourceCityId;
-	
+
 	@Column(name = "DESTINATION_CITY_ID")
 	private Long destinationCityId;
 
@@ -45,11 +45,11 @@ public class BookingDetailsPk implements Serializable{
 		this.travellingDate = travellingDate;
 	}
 
-	public int getSeatNumber() {
+	public Integer getSeatNumber() {
 		return seatNumber;
 	}
 
-	public void setSeatNumber(int seatNumber) {
+	public void setSeatNumber(Integer seatNumber) {
 		this.seatNumber = seatNumber;
 	}
 
@@ -68,6 +68,13 @@ public class BookingDetailsPk implements Serializable{
 	public void setDestinationCityId(Long destinationCityId) {
 		this.destinationCityId = destinationCityId;
 	}
-	
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		BookingDetailsPk pk = (BookingDetailsPk) obj;
+		return pk.getId().equals(this.getId()) && pk.getSeatNumber().equals(this.getSeatNumber())
+				&& pk.getSourceCityId().equals(this.getSourceCityId())
+				&& pk.getDestinationCityId().equals(this.getDestinationCityId())
+				&& pk.getTravellingDate().equals(this.getTravellingDate());
+	}
 }

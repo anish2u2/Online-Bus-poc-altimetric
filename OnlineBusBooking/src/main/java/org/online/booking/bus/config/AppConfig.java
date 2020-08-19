@@ -8,6 +8,8 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -21,9 +23,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-public class AppConfig  implements WebMvcConfigurer{
+public class AppConfig implements WebMvcConfigurer {
 	
-	
+	@Primary
 	@Autowired
 	@Bean
 	public LocalSessionFactoryBean getSessionFactory(DataSource dataSource) {
@@ -33,7 +35,7 @@ public class AppConfig  implements WebMvcConfigurer{
 		localSessionFactoryBean.setHibernateProperties(hibernateAdditionalProperties());
 		return localSessionFactoryBean;
 	}
-	
+
 	public Properties hibernateAdditionalProperties() {
 		Properties properties = new Properties();
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
@@ -53,7 +55,7 @@ public class AppConfig  implements WebMvcConfigurer{
 		entityManagerFactoryBean.setJpaProperties(hibernateAdditionalProperties());
 		return entityManagerFactoryBean;
 	}
-	
+
 	@Autowired
 	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
@@ -61,5 +63,9 @@ public class AppConfig  implements WebMvcConfigurer{
 		jpaTransactionManager.setEntityManagerFactory(entityManagerFactory);
 		return jpaTransactionManager;
 	}
-	
+
+	@Bean
+	public PersistenceExceptionTranslationPostProcessor persistenceExceptionTranslator() {
+		return  new PersistenceExceptionTranslationPostProcessor();
+	}
 }

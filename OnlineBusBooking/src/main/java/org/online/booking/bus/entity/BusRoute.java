@@ -9,6 +9,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name = "BUS_ROUTE")
 public class BusRoute {
@@ -19,10 +22,12 @@ public class BusRoute {
 	private Long id;
 	
 	@OneToOne
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(name = "BUS_ID", referencedColumnName = "BUS_ID")
 	private Bus busId;
 	
 	@OneToOne
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(referencedColumnName = "BUS_ROUT_DETAILS_ID", name = "BUS_ROUT_DETAILS_ID")
 	private BusRouteDetails routDetails;
 
