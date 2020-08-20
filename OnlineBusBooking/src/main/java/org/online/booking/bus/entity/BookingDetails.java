@@ -3,6 +3,8 @@ package org.online.booking.bus.entity;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +25,10 @@ public class BookingDetails {
 	
 	@Column(name = "TRAVELLER_GOV_NUMBER")
 	private String travellerId;
+	
+	@ManyToOne
+	@JoinColumn(name = "ORDER_DETAILS_ID")
+	private OrderDetails orderDetails;
 
 	public BookingDetailsPk getBookingId() {
 		return bookingId;
@@ -62,6 +68,14 @@ public class BookingDetails {
 
 	public void setTravellerId(String travellerId) {
 		this.travellerId = travellerId;
+	}
+
+	public OrderDetails getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(OrderDetails orderDetails) {
+		this.orderDetails = orderDetails;
 	}
 	
 	
