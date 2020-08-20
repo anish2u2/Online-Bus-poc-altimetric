@@ -2,9 +2,7 @@ package org.online.booking.bus.dao;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +15,7 @@ import org.hibernate.SessionFactory;
 import org.online.booking.bus.entity.Bus;
 import org.online.booking.bus.model.BusSearchResult;
 import org.online.booking.bus.model.Buses;
+import org.online.booking.bus.repos.BookingDetailsRepo;
 import org.online.booking.bus.repos.BusRepos;
 import org.online.booking.bus.structure.Distance;
 import org.online.booking.bus.structure.DistanceUtil;
@@ -37,6 +36,9 @@ public class BusBookingDataAccessObject extends HibernateDaoSupport {
 
 	@Autowired
 	private BusRepos busRepo;
+	
+	@Autowired
+	private BookingDetailsRepo bookingDetailsRepos;
 
 	@Autowired
 	public void setInjectSessionFactory(SessionFactory factory) {
@@ -93,7 +95,9 @@ public class BusBookingDataAccessObject extends HibernateDaoSupport {
 
 		iterable.forEach((object) -> {
 			org.online.booking.bus.model.Bus bus = new org.online.booking.bus.model.Bus();
+			List<Integer> listOfBookedSeats=bookingDetailsRepos.findAllUnavailableSeats(startDate, object.getId());
 			bus.setBusId(object.getId());
+			bus.setUnavailableSeats(listOfBookedSeats);
 			bus.setBusNumber(object.getBusNumber());
 			bus.setOperator(object.getOperator().getName());
 			busList.add(bus);

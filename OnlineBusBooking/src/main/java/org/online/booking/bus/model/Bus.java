@@ -1,21 +1,32 @@
 package org.online.booking.bus.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Bus {
-	
-private Long busId;
-	
+
+	private Long busId;
+
 	private String busNumber;
-	
+
 	private String operator;
-	
+
 	private Date arrivalTime;
-	
+
 	private Long duration;
-	
+
 	private Long price;
-	
+
+	private List<Integer> unavailableSeats;
+
+	public List<Integer> getUnavailableSeats() {
+		return unavailableSeats;
+	}
+
+	public void setUnavailableSeats(List<Integer> unavailableSeats) {
+		this.unavailableSeats = unavailableSeats;
+	}
+
 	public Long getBusId() {
 		return busId;
 	}
@@ -64,6 +75,4 @@ private Long busId;
 		this.price = price;
 	}
 
-	
-	
 }
