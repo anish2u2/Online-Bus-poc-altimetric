@@ -100,6 +100,7 @@ public class BusBookingDataAccessObject extends HibernateDaoSupport {
 			bus.setUnavailableSeats(listOfBookedSeats);
 			bus.setBusNumber(object.getBusNumber());
 			bus.setOperator(object.getOperator().getName());
+			bus.setCapacity(object.getBusDetails().getBusCapacity());
 			busList.add(bus);
 			if (dist.isPresent()) {
 				Calendar cal = Calendar.getInstance();

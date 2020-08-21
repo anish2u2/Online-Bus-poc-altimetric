@@ -16,6 +16,8 @@ public class Bus {
 	private Long duration;
 
 	private Long price;
+	
+	private Long capacity;
 
 	private List<Integer> unavailableSeats;
 
@@ -75,4 +77,14 @@ public class Bus {
 		this.price = price;
 	}
 
+	public Long getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(Long capacity) {
+		this.capacity = capacity;
+	}
+	
+	
+	
 }
