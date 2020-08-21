@@ -32,16 +32,19 @@ public class ServiceImpl<T> implements Service<T>,Searcher,BookTicket {
 		dao.getHibernateTemplate().save(data);
 	}
 
+	@Transactional
 	@Override
 	public void delete(T data) {
 		dao.getHibernateTemplate().delete(data);
 	}
-
+	
+	@Transactional
 	@Override
 	public void update(T data) {
 		dao.getHibernateTemplate().saveOrUpdate(data);
 	}
-
+	
+	@Transactional(readOnly = true)
 	@Override
 	public BusSearchResult findBuses(String sourceCity, String destinationCity, Date travelDate, Date returnDate) {
 		
